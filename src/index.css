@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+/* Shared workspace design tokens. */
+:root {
+  color-scheme: light;
+  --retell-bg: #f8fafc;
+  --retell-surface: #ffffff;
+  --retell-surface-muted: #f1f5f9;
+  --retell-border: #e2e8f0;
+  --retell-border-strong: #cbd5e1;
+  --retell-text: #20232b;
+  --retell-text-secondary: #6b7280;
+  --retell-text-muted: #99a0ae;
+  --retell-primary: #2563eb;
+  --retell-primary-hover: #1d4ed8;
+  --retell-primary-soft: #eff6ff;
+  --retell-success: #1fc16b;
+  --retell-success-soft: #e9f9f0;
+  --retell-error: #fb3748;
+  --retell-error-soft: #ffebec;
+  --retell-info: #2563eb;
+  --retell-radius-sm: 6px;
+  --retell-radius-md: 8px;
+  --retell-radius-lg: 10px;
+  --retell-radius-xl: 12px;
+  --retell-radius-pill: 9999px;
+  --retell-space-1: 2px;
+  --retell-space-2: 4px;
+  --retell-space-3: 6px;
+  --retell-space-4: 8px;
+  --retell-space-5: 10px;
+  --retell-space-6: 12px;
+  --retell-space-7: 16px;
+  --retell-space-8: 20px;
+  --retell-space-9: 24px;
+  --retell-motion-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --color-border: var(--retell-border);
+  --color-canvas: var(--retell-bg);
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--retell-border);
+  }
+
+  html,
+  body,
+  #root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: var(--retell-bg);
+    color: var(--retell-text);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.011em;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--retell-primary);
+    outline-offset: 2px;
+  }
+}
+
+.ui-input {
+  width: 100%;
+  border: 1px solid var(--retell-border-strong);
+  border-radius: var(--retell-radius-md);
+  background: var(--retell-surface);
+  padding: 8px 12px;
+  color: var(--retell-text);
+  outline: none;
+  transition: border-color var(--retell-motion-fast), box-shadow var(--retell-motion-fast);
+}
+
+.ui-input:focus {
+  border-color: var(--retell-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--retell-primary) 16%, transparent);
+}
+
+.ui-input:hover:not(:disabled):not(:focus) {
+  border-color: var(--retell-border-strong);
+}
+
+.ui-input:disabled {
+  background: var(--retell-surface-muted);
+  color: var(--retell-text-muted);
+  cursor: not-allowed;
+}
+
+.ui-input::placeholder {
+  color: var(--retell-text-muted);
+}
+
+/* Clamp the older prototype's oversized card radii to the dashboard scale. */
+.rounded-2xl,
+.rounded-3xl { border-radius: var(--retell-radius-xl) !important; }
+.rounded-xl { border-radius: var(--retell-radius-xl) !important; }
+.rounded-lg { border-radius: var(--retell-radius-md) !important; }
+.rounded-md { border-radius: var(--retell-radius-sm) !important; }
+
+.panel-card {
+  background: var(--retell-surface);
+  border: 1px solid var(--retell-border);
+  border-radius: var(--retell-radius-md);
+}
+
+.react-flow__attribution { display: none; }
+.react-flow__controls { box-shadow: none !important; border: 1px solid var(--retell-border) !important; border-radius: var(--retell-radius-md) !important; overflow: hidden; }
+.react-flow__controls-button { border-bottom-color: var(--retell-border) !important; width: 30px !important; height: 30px !important; }
+.react-flow__controls-button:hover { background: var(--retell-surface-muted) !important; }
+.react-flow__minimap { overflow: hidden !important; }
+.react-flow__handle { width: 10px !important; height: 10px !important; }
+.react-flow__edge-path { stroke-linecap: round; }
+
+@keyframes toast-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes modal-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes live-pulse { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--retell-success) 45%, transparent); } 50% { box-shadow: 0 0 0 8px transparent; } }
+
+.animate-toast-in { animation: toast-in 180ms ease-out; }
+.animate-modal-in { animation: modal-in 180ms ease-out; }
+.animate-fade-in { animation: fade-in 180ms ease-out; }
+.live-pulse { animation: live-pulse 1.6s ease-out infinite; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #c9d2e0; border-radius: var(--retell-radius-pill); }
+::-webkit-scrollbar-thumb:hover { background: #99a0ae; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
